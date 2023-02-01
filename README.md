@@ -1,15 +1,15 @@
 # Introduction
-I built this BitTorrent Client from scratch using __C++__, which is a peer-to-peer protocol for downloading and distributing files across the Internet. The general steps were as follows:
+I built this BitTorrent Client __from scratch__ using __C++__, which is a peer-to-peer protocol for downloading and distributing files across the Internet. The general steps were as follows:
 
-(1) I used C++ Bencoding Library to parse torrent files to get the peer who own the data and then use C++ CPR Library to send Tracker an HTTP GET request to know the information of peer.
+(1) Used C++ Bencoding Library to parse torrent files to get peers who own the data; and then use C++ CPR Library to send an HTTP GET request to Tracker that stores information of downloader (uploader), to know the information of peer.
 
-(2) I used __Socket Programming__ to build a TCP connection with a peer and then send handshake messages to make sure that the peer uses the same BitTorrent protocol and whether it has what our client wants.
+(2) Used __Socket Programming__ to build a TCP connection with a peer and then send handshake messages to make sure that the peer uses the same BitTorrent protocol and whether it has what our client wants.
 
-(3) I used the PieceManager to manage pieces which is part of the desired document.
+(3) Used PieceManager to __manage__ pieces which is part of the __desired document__.
 
-(4) I put all discovered peers into a __thread-safe queue__, and each thread gets the peer from this queue and continues to run until the end of the file download.
+(4) Put all discovered peers into a __thread-safe queue__, and each thread gets the peer from this queue and continues to run until the end of the file download.
 
-I have achieved excellent output; with eight threads, the download speed is __1.14 MB/s__ when the network connection is good.
+I have achieved excellent output: with eight threads, the download speed is __1.14 MB/s__ when the network connection is good.
 
 # How to use
 If you want to try this project, follow the following steps:
