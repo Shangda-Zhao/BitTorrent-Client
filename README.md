@@ -1,13 +1,15 @@
 # Introduction
-I built this BitTorrent Client __from scratch__ using __C++__, which is a peer-to-peer protocol for downloading and distributing files across the Internet. The general steps were as follows:
+I built this BitTorrent Client __from scratch__ using __C++__, which is a peer-to-peer protocol for downloading and distributing files across the Internet. 
+
+The general steps were as follows:
 
 (1) Used C++ Bencoding Library to parse torrent files to get peers who own the data; and then use C++ CPR Library to send an HTTP GET request to Tracker that stores information of downloader (uploader), to know the information of peer.
 
-(2) Used __Socket Programming__ to build a TCP connection with a peer and then send handshake messages to make sure that the peer uses the same BitTorrent protocol and whether it has what our client wants.
+(2) Used __Socket Programming__ to build a __TCP connection__ with a peer and then send handshake messages to make sure that the peer uses the same BitTorrent protocol and whether it has what our client wants.
 
 (3) Used PieceManager to __manage__ pieces which is part of the __desired document__.
 
-(4) Put all discovered peers into a __thread-safe queue__, and each thread gets the peer from this queue and continues to run until the end of the file download.
+(4) Used a __thread pool__ to __improve download efficiency__, where all discovered peers were placed into a __thread-safe queue__, and each thread got peers from this queue and continued to run until the end of the file download.
 
 I have achieved excellent output: with eight threads, the download speed is __1.14 MB/s__ when the network connection is good.
 
